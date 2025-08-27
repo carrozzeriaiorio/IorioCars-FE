@@ -26,14 +26,6 @@
                 "input": "public"
               }
             ],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "outputPath": "dist/iorio-cars-fe",
             "styles": [
               "src/styles.css"
             ],
@@ -92,14 +84,6 @@
                 "input": "public"
               }
             ],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "outputPath": "dist/iorio-cars-fe",
             "styles": [
               "src/styles.css"
             ],
