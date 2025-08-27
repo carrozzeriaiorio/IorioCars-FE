@@ -1,0 +1,26 @@
+.homepage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  background: linear-gradient(135deg, #1d3557, #457b9d);
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.homepage h1 {
+  font-size: 3em;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.homepage p {
+  font-size: 1.5em;
+  animation: fadeIn 3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-20px);}
+  100% { opacity: 1; transform: translateY(0);}
+}
