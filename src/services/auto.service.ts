@@ -19,4 +19,29 @@ export class AutoService {
   getById(id: number): Observable<Auto> {
     return this.http.get<Auto>(`${this.apiUrl}/${id}`);
   }
+
+  // Crea una nuova auto
+  create(auto: Auto, file?: File): Observable<Auto> {
+    const formData = new FormData();
+    formData.append('auto', new Blob([JSON.stringify(auto)], { type: 'application/json' }));
+    if (file) {
+      formData.append('file', file);
+    }
+    return this.http.post<Auto>(this.apiUrl, formData);
+  }
+
+  // Aggiorna un’auto esistente
+  update(id: number, auto: Auto, file?: File): Observable<Auto> {
+    const formData = new FormData();
+    formData.append('auto', new Blob([JSON.stringify(auto)], { type: 'application/json' }));
+    if (file) {
+      formData.append('file', file);
+    }
+    return this.http.put<Auto>(`${this.apiUrl}/${id}`, formData);
+  }
+
+  // Elimina un’auto
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
 }

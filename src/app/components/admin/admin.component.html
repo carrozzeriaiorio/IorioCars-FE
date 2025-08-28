@@ -1,0 +1,47 @@
+<div class="admin-container">
+
+  <h2>Gestione Auto</h2>
+
+  <div class="table-header">
+    <button class="add-btn" (click)="openModal()">Aggiungi Auto</button>
+  </div>
+
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Marca</th>
+      <th>Modello</th>
+      <th>Anno</th>
+      <th>Prezzo</th>
+      <th>Km</th>
+      <th>Carburante</th>
+      <th>Azioni</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let auto of autos">
+      <td>{{ auto.id }}</td>
+      <td>{{ auto.marca }}</td>
+      <td>{{ auto.modello }}</td>
+      <td>{{ auto.anno }}</td>
+      <td>{{ auto.prezzo | currency:'EUR' }}</td>
+      <td>{{ auto.km }}</td>
+      <td>{{ auto.carburante }}</td>
+      <td>
+        <button class="edit-btn" (click)="openModal(auto)">Modifica</button>
+        <button class="delete-btn" (click)="deleteAuto(auto.id!)">Elimina</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <app-admin-manage-auto
+    [modalOpen]="isModalOpen"
+    [editingAuto]="editingAuto"
+    [formAuto]="formAuto"
+    (save)="handleSave($event)"
+    (close)="isModalOpen = false">
+  </app-admin-manage-auto>
+
+</div>

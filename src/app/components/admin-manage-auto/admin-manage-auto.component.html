@@ -1,0 +1,52 @@
+<div class="modal" [class.show]="modalOpen">
+  <div class="modal-content">
+    <h3>{{ editingAuto ? 'Modifica Auto' : 'Aggiungi Auto' }}</h3>
+    <form (ngSubmit)="submit()" class="modal-form">
+      <div class="modal-columns">
+        <!-- Colonna sinistra: campi principali + immagine -->
+        <div class="left-column">
+          <label>Titolo:</label>
+          <input type="text" [(ngModel)]="formAuto.titolo" name="titolo" placeholder="Titolo" required>
+
+          <label>Marca:</label>
+          <input type="text" [(ngModel)]="formAuto.marca" name="marca" placeholder="Marca" required>
+
+          <label>Modello:</label>
+          <input type="text" [(ngModel)]="formAuto.modello" name="modello" placeholder="Modello" required>
+
+          <label>Anno:</label>
+          <input type="number" [(ngModel)]="formAuto.anno" name="anno" placeholder="Anno" required>
+
+          <label>Prezzo:</label>
+          <input type="number" [(ngModel)]="formAuto.prezzo" name="prezzo" placeholder="Prezzo" required>
+
+          <label>Km:</label>
+          <input type="number" [(ngModel)]="formAuto.km" name="km" placeholder="Km" required>
+
+          <label>Carburante:</label>
+          <input type="text" [(ngModel)]="formAuto.carburante" name="carburante" placeholder="Carburante" required>
+
+          <label>Immagine:</label>
+          <input type="file" (change)="onFileChange($event)">
+        </div>
+
+        <!-- Colonna destra: descrizione -->
+        <div class="right-column">
+          <label>Descrizione:</label>
+          <textarea [(ngModel)]="formAuto.descrizione" name="descrizione" placeholder="Descrizione"></textarea>
+
+          <div *ngIf="editingAuto?.immagine || selectedFile" class="image-preview">
+            <label>Immagine presente nel catalogo:</label>
+            <img [src]="getPreview()" alt="Immagine auto" class="auto-preview">
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-buttons">
+        <button type="submit">{{ editingAuto ? 'Salva' : 'Aggiungi' }}</button>
+        <button type="button" (click)="cancel()">Annulla</button>
+      </div>
+    </form>
+  </div>
+</div>
+
