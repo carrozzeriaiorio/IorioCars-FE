@@ -1,0 +1,94 @@
+<div class="dashboard-container">
+  <aside class="filters">
+    <h3>Filtri</h3>
+
+    <!-- Marca -->
+    <div class="filter-group">
+      <label>Marca</label>
+      <select [(ngModel)]="filter.marca">
+        <option value="">Tutte</option>
+        <option *ngFor="let m of marche">{{ m }}</option>
+      </select>
+    </div>
+
+    <!-- Prezzo  -->
+    <div class="filter-group">
+      <label>Prezzo (€)</label>
+      <div class="range-inputs">
+        <input type="number" min="0" step="1000"
+               [(ngModel)]="filter.prezzoMin"
+               [max]="filter.prezzoMax ?? 100000"
+               placeholder="Min">
+        <input type="number" min="0" step="1000"
+               [(ngModel)]="filter.prezzoMax"
+               [min]="filter.prezzoMin ?? 0"
+               placeholder="Max">
+      </div>
+    </div>
+
+    <!-- Anno -->
+    <div class="filter-group">
+      <label>Anno</label>
+      <div class="range-inputs">
+        <input type="number" min="1950" max="2099" step="1"
+               [(ngModel)]="filter.annoMin"
+               [max]="filter.annoMax ?? 2099"
+               placeholder="Da">
+        <input type="number" min="1950" max="2099" step="1"
+               [(ngModel)]="filter.annoMax"
+               [min]="filter.annoMin ?? 1950"
+               placeholder="A">
+      </div>
+    </div>
+
+    <!-- KM -->
+    <div class="filter-group">
+      <label>Chilometraggio (km)</label>
+      <div class="range-inputs">
+        <input type="number" min="0" step="1000"
+               [(ngModel)]="filter.kmMin"
+               [max]="filter.kmMax ?? 500000"
+               placeholder="Min">
+        <input type="number" min="0" step="1000"
+               [(ngModel)]="filter.kmMax"
+               [min]="filter.kmMin ?? 0"
+               placeholder="Max">
+      </div>
+    </div>
+
+    <!-- Carburante -->
+    <div class="filter-group">
+      <label>Carburante</label>
+      <select [(ngModel)]="filter.carburante">
+        <option value="">Tutti</option>
+        <option *ngFor="let c of carburanti">{{ c }}</option>
+      </select>
+    </div>
+
+    <!-- Bottoni -->
+    <div class="filter-buttons">
+      <button class="apply" (click)="applyFilters()">Applica filtri</button>
+      <button class="reset" (click)="resetFilters()">Reset</button>
+    </div>
+  </aside>
+
+
+  <main class="auto-carousel">
+    <div class="carousel">
+      <div class="auto-card" *ngFor="let auto of filteredAutos">
+        <img [src]="getImageUrl(auto.immagine)" alt="Foto non disponibile">
+
+        <div class="auto-info">
+          <h4>{{ auto.titolo }}</h4>
+
+          <p><strong>Anno:</strong> {{ auto.anno }}</p>
+          <p><strong>Km:</strong> {{ auto.km | number }}</p>
+          <p><strong>Carburante:</strong> {{ auto.carburante }}</p>
+          <p class="price">{{ auto.prezzo | currency:'EUR' }}</p>
+
+          <button [routerLink]="['/auto', auto.id]">Dettagli</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

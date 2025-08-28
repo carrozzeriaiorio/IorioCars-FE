@@ -1,0 +1,39 @@
+<div class="auto-detail-wrapper">
+  <div class="auto-detail-container" *ngIf="auto">
+    <h2>{{ auto.titolo }}</h2>
+
+    <div class="detail-content">
+      <!-- Immagine a sinistra -->
+      <div class="image-section">
+        <ng-container *ngIf="auto.immagine; else placeholder">
+          <img [src]="getImageUrl(auto.immagine)" alt="{{ auto.titolo }}">
+        </ng-container>
+        <ng-template #placeholder>
+          <div class="image-placeholder"></div>
+        </ng-template>
+      </div>
+
+      <!-- Info a destra -->
+      <div class="info-section">
+        <p><strong>Marca:</strong> {{ auto.marca }}</p>
+        <p><strong>Modello:</strong> {{ auto.modello }}</p>
+        <p><strong>Anno:</strong> {{ auto.anno }}</p>
+        <p><strong>Km:</strong> {{ auto.km }}</p>
+        <p><strong>Carburante:</strong> {{ auto.carburante }}</p>
+
+        <!-- Prezzo grande in fondo -->
+        <p class="price">{{ auto.prezzo | currency:'EUR' }}</p>
+      </div>
+    </div>
+
+    <!-- Descrizione -->
+    <div class="description-section">
+      <h3>Descrizione</h3>
+      <p>{{ auto.descrizione }}</p>
+    </div>
+
+    <div class="buttons">
+      <button routerLink="/dashboard">Torna alla Dashboard</button>
+    </div>
+  </div>
+</div>

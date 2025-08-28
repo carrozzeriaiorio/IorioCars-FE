@@ -1,0 +1,15 @@
+<nav class="navbar">
+  <div class="logo">
+    <a routerLink="/">IorioCars</a>
+  </div>
+  <ul class="nav-links">
+    <li><a routerLink="/">Home</a></li>
+    <li><a routerLink="/dashboard">Parco Auto</a></li>
+    <li><a routerLink="/admin" *ngIf="loggedIn">Area Riservata</a></li>
+  </ul>
+  <div class="auth">
+    <button *ngIf="!loggedIn" routerLink="/login">Accedi</button>
+    <button *ngIf="loggedIn" (click)="logout()">Esci</button>
+  </div>
+</nav>
+

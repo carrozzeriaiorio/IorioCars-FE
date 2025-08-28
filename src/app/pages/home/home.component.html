@@ -1,4 +1,61 @@
-<div class="homepage">
-  <h1>IorioCars</h1>
-  <p>Il sito è in costruzione, attendere con pazienza...</p>
+<div class="home-container">
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>{{ heroTitle }}</h1>
+    <p>{{ heroSubtitle }}</p>
+    <button routerLink="/dashboard">{{ ctaText }}</button>
+  </section>
+
+  <!-- About Section -->
+  <section class="about">
+    <h2>{{ aboutTitle }}</h2>
+    <p>{{ aboutText }}</p>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services">
+    <h2>I nostri servizi</h2>
+    <div class="service-cards">
+      <div class="card" *ngFor="let service of services">
+        <h3>{{ service.title }}</h3>
+        <p>{{ service.description }}</p>
+      </div>
+    </div>
+  </section>
 </div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-container">
+    <!-- Colonna 1: Logo e info azienda -->
+    <div class="footer-col">
+      <h4>IorioCars</h4>
+      <p>P.IVA: 12345678901</p>
+    </div>
+
+    <!-- Colonna 2: Indirizzo -->
+    <div class="footer-col">
+      <h4>Indirizzo</h4>
+      <p>Via Roma 123, 00100 Roma, Italia</p>
+      <a href="https://www.google.com/maps?q=Via+Roma+123,+Roma" target="_blank">Vedi su Google Maps</a>
+    </div>
+
+    <!-- Colonna 3: Telefono -->
+    <div class="footer-col">
+      <h4>Telefono</h4>
+      <p>+39 06 12345678</p>
+    </div>
+
+    <!-- Colonna 4: Email -->
+    <div class="footer-col">
+      <h4>Email</h4>
+      <p>carrozzeriaiorio&#64;gmail.com</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 IorioCars. Tutti i diritti riservati.</p>
+  </div>
+</footer>
+

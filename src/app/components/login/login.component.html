@@ -1,0 +1,23 @@
+<div class="login-container">
+  <h2>Accedi</h2>
+  <form (ngSubmit)="login()" novalidate>
+    <!-- Email -->
+    <div class="form-group" [class.invalid]="emailError">
+      <label for="email">Email</label>
+      <input id="email" type="email" [(ngModel)]="email" name="email" required>
+      <div class="input-error" *ngIf="emailError">{{ emailError }}</div>
+    </div>
+
+    <!-- Password -->
+    <div class="form-group" [class.invalid]="passwordError">
+      <label for="password">Password</label>
+      <input id="password" type="password" [(ngModel)]="password" name="password" required>
+      <div class="input-error" *ngIf="passwordError">{{ passwordError }}</div>
+    </div>
+
+    <!-- Messaggio generico -->
+    <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+    <button type="submit" class="login-btn">Accedi</button>
+  </form>
+</div>
