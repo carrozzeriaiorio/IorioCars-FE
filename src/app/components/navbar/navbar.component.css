@@ -84,23 +84,42 @@
   .navbar {
     padding: 0 10px;
     height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
-  /* Nascondi logo su mobile se desiderato */
+  /* Nascondi logo se desiderato */
   .navbar .logo {
     display: none;
   }
 
+  /* Link principali a sinistra */
   .navbar .nav-links {
+    display: flex;
     gap: 15px;
-    justify-content: center;
+  }
+
+  /* Mostra solo Home e Parco Auto */
+  .navbar .nav-links li {
+    display: none; /* nasconde tutti */
+  }
+  .navbar .nav-links .nav-home,
+  .navbar .nav-links .nav-dashboard {
+    display: block; /* mostra solo Home e Parco Auto */
   }
 
   .navbar .nav-links li a {
     font-size: 1rem;
   }
 
-  .navbar .auth {
-    gap: 6px;
+  /* Nasconde gli altri link e il pulsante accedi/esci */
+  .navbar .auth,
+  .nav-about,
+  .nav-services,
+  .nav-contacts,
+  .nav-admin {
+    display: none;
   }
 }
+

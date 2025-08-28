@@ -3,12 +3,12 @@
     <a routerLink="/">IorioCars</a>
   </div>
   <ul class="nav-links">
-    <li><a routerLink="/">Home</a></li>
-    <li><a href="#about">Chi siamo</a></li>
-    <li><a href="#services">Servizi</a></li>
-    <li><a href="#footer">Contatti</a></li>
-    <li><a routerLink="/dashboard">Parco Auto</a></li>
-    <li><a routerLink="/admin" *ngIf="loggedIn">Area Riservata</a></li>
+    <li class="nav-home"><a routerLink="/">Home</a></li>
+    <li class="nav-about"><a href="#about">Chi siamo</a></li>
+    <li class="nav-services"><a href="#services">Servizi</a></li>
+    <li class="nav-contacts"><a href="#footer">Contatti</a></li>
+    <li class="nav-dashboard"><a routerLink="/dashboard">Parco Auto</a></li>
+    <li class="nav-admin" *ngIf="loggedIn"><a routerLink="/admin">Area Riservata</a></li>
   </ul>
   <div class="auth">
     <button *ngIf="!loggedIn" routerLink="/login">Accedi</button>
