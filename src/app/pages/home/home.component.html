@@ -1,20 +1,20 @@
 <div class="home-container">
 
   <!-- Hero Section -->
-  <section class="hero">
+  <section id="hero" class="hero">
     <h1>{{ heroTitle }}</h1>
     <p>{{ heroSubtitle }}</p>
     <button routerLink="/dashboard">{{ ctaText }}</button>
   </section>
 
   <!-- About Section -->
-  <section class="about">
+  <section id="about" class="about">
     <h2>{{ aboutTitle }}</h2>
     <p>{{ aboutText }}</p>
   </section>
 
   <!-- Services Section -->
-  <section class="services">
+  <section id="services" class="services">
     <h2>I nostri servizi</h2>
     <div class="service-cards">
       <div class="card" *ngFor="let service of services">
@@ -26,31 +26,32 @@
 </div>
 
 <!-- Footer -->
-<footer class="footer">
+<footer id="footer" class="footer">
   <div class="footer-container">
     <!-- Colonna 1: Logo e info azienda -->
     <div class="footer-col">
       <h4>IorioCars</h4>
-      <p>P.IVA: 12345678901</p>
+      <p>P.IVA: 05799750657</p>
     </div>
 
-    <!-- Colonna 2: Indirizzo -->
-    <div class="footer-col">
-      <h4>Indirizzo</h4>
-      <p>Via Roma 123, 00100 Roma, Italia</p>
-      <a href="https://www.google.com/maps?q=Via+Roma+123,+Roma" target="_blank">Vedi su Google Maps</a>
-    </div>
+    <!-- Colonna 2 & 3: Contatti divisi -->
+    <div class="footer-col contact-cols">
+      <div class="contact-left">
+        <h4>Telefono</h4>
+        <p>Antonio: <a href="tel:+393888781136">3888781136</a></p>
+        <p>Andrea: <a href="tel:+393882544708">3882544708</a></p>
 
-    <!-- Colonna 3: Telefono -->
-    <div class="footer-col">
-      <h4>Telefono</h4>
-      <p>+39 06 12345678</p>
-    </div>
-
-    <!-- Colonna 4: Email -->
-    <div class="footer-col">
-      <h4>Email</h4>
-      <p>carrozzeriaiorio&#64;gmail.com</p>
+        <h4>Email</h4>
+        <p>carrozzeriaiorio&#64;gmail.com</p>
+      </div>
+      <div class="contact-right">
+        <h4>Indirizzo</h4>
+        <p>Contrada Epitaffio SNC, 84025 Eboli (SA), Italia</p>
+        <a href="https://www.google.com/maps?q=Contrada+Epitaffio+SNC,+84025+Eboli+(SA),+Italia"
+           target="_blank" rel="noopener noreferrer">
+          Vedi su Google Maps
+        </a>
+      </div>
     </div>
   </div>
 
@@ -58,4 +59,5 @@
     <p>&copy; 2025 IorioCars. Tutti i diritti riservati.</p>
   </div>
 </footer>
+
 
