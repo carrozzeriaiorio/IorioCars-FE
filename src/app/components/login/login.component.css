@@ -49,18 +49,21 @@ input:focus {
 }
 
 /* Messaggi di errore */
-.error, .field-error {
-  color: #d9534f;
-  font-size: 0.9rem;
-  margin-top: 5px;
-  opacity: 0;
-  animation: fadeInError 0.5s forwards;
+.login-error {
+  background-color: #ffdddd; /* sfondo rosso chiaro */
+  color: #d8000c; /* rosso scuro per testo */
+  border: 1px solid #d8000c;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: bold;
 }
 
 .field-error {
-  position: absolute;
-  bottom: -18px;
-  left: 0;
+  color: #d8000c;
+  font-size: 0.9rem;
+  margin-top: 4px;
 }
 
 /* Pulsante login */

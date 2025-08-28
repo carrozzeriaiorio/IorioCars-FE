@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent {
   emailError: string = '';
   passwordError: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private loginService: LoginService) {}
 
   login() {
     this.clearErrors();
@@ -31,11 +32,19 @@ export class LoginComponent {
     }
     if (this.emailError || this.passwordError) return;
 
-    // Salva le credenziali sul sessionStorage
-    sessionStorage.setItem('user', JSON.stringify({ email: this.email }));
-
-    // Reindirizza alla dashboard/admin
-    this.router.navigate(['/admin']);
+    this.loginService.login(this.email, this.password).subscribe({
+      next: () => {
+        // Login avvenuto con successo, reindirizza
+        if (this.loginService.isAdmin()) {
+          this.router.navigate(['/admin']);
+        } else {
+          this.router.navigate(['/dashboard']);
+        }
+      },
+      error: () => {
+        this.errorMessage = 'Email o password non validi';
+      }
+    });
   }
 
   clearErrors() {
