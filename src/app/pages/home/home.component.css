@@ -178,8 +178,24 @@
 }
 
 .footer-logo {
-  width: 60px;
-  margin-bottom: 10px;
+  display: block;
+  margin: 10px auto 0 auto;
+  width: auto;
+  height: 150px; /* altezza desktop */
+}
+
+.footer-col img.footer-logo {
+  height: 100%;
+  width: 100%;
+  display: block;
+  margin-top: 10px;   /* Piccolo margine opzionale */
+}
+
+.footer-logo {
+  display: block;
+  margin: 10px auto 0 auto;
+  width: auto;
+  height: 150px; /* altezza desktop */
 }
 
 .footer-bottom {
@@ -199,12 +215,10 @@
     gap: 20px;
   }
 
-  .footer-col {
-    text-align: center;
-  }
-
-  .footer-logo {
-    margin: 0 auto 10px auto;
+  .contact-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
   }
 }
 

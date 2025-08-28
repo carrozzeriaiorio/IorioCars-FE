@@ -3,13 +3,20 @@
   <h2>Gestione Auto</h2>
 
   <div class="table-header">
+    <div class="search-container">
+      <input
+        type="text"
+        placeholder="Cerca per titolo..."
+        [(ngModel)]="searchTerm"
+        (input)="filterAutos()">
+    </div>
     <button class="add-btn" (click)="openModal()">Aggiungi Auto</button>
   </div>
 
   <table>
     <thead>
     <tr>
-      <th>ID</th>
+      <th>Titolo</th>
       <th>Marca</th>
       <th>Modello</th>
       <th>Anno</th>
@@ -20,8 +27,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let auto of autos">
-      <td>{{ auto.id }}</td>
+    <tr *ngFor="let auto of filteredAutos">
+      <td>{{ auto.titolo }}</td>
       <td>{{ auto.marca }}</td>
       <td>{{ auto.modello }}</td>
       <td>{{ auto.anno }}</td>

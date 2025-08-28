@@ -36,10 +36,13 @@ export class DashboardComponent {
 
   ngOnInit(): void {
     this.autoService.getAll().subscribe(data => {
-      this.autos = data;
-      this.filteredAutos = data;
-      this.marche = [...new Set(data.map(a => a.marca))];
-      this.carburanti = [...new Set(data.map(a => a.carburante))];
+      // ordina per marca in ordine alfabetico
+      const sorted = data.sort((a, b) => a.marca.localeCompare(b.marca));
+
+      this.autos = sorted;
+      this.filteredAutos = sorted;
+      this.marche = [...new Set(sorted.map(a => a.marca))];
+      this.carburanti = [...new Set(sorted.map(a => a.carburante))];
     });
   }
 
@@ -71,7 +74,9 @@ export class DashboardComponent {
   }
 
   getImageUrl(filename?: string): string {
-    if (!filename) return ''; // fallback se manca
+    if (!filename || filename.trim() === '') {
+      return 'assets/images/no_car_image.jpg'; // fallback locale
+    }
     return `${environment.apiURL}/images/${filename}`;
   }
 

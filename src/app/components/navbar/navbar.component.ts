@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../../../services/login.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { LoginService } from '../../../services/login.service';
 export class NavbarComponent {
   loggedIn = !!sessionStorage.getItem('user'); // controllo login
 
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService, private router: Router) {}
 
   ngOnInit() {
     // Aggiorna stato login automaticamente tramite BehaviorSubject
@@ -22,7 +22,14 @@ export class NavbarComponent {
     });
   }
 
+  goHome() {
+    this.router.navigate(['/']).then(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' }); // scrolla in alto
+    });
+  }
+
   logout() {
     this.loginService.logout();
+    this.router.navigate(['/']);
   }
 }

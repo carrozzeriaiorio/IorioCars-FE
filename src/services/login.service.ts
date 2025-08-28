@@ -5,6 +5,7 @@ import { environment } from '../environments/environments';
 
 interface LoginResponse {
   email: string;
+  password: string;
   role: string;
 }
 
@@ -24,8 +25,14 @@ export class LoginService {
   login(email: string, password: string): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(this.apiUrl, { email, password }).pipe(
       tap(user => {
-        sessionStorage.setItem('user', JSON.stringify(user));
-        this.userSubject.next(user);
+        // salva email, password in chiaro e role
+        const userWithPasswordAndRole = {
+          email: user.email,
+          password,       // password in chiaro
+          role: user.role // ruolo restituito dal backend
+        };
+        sessionStorage.setItem('user', JSON.stringify(userWithPasswordAndRole));
+        this.userSubject.next(userWithPasswordAndRole);
       })
     );
   }

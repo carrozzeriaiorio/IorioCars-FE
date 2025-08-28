@@ -15,6 +15,8 @@ import { AdminManageAutoComponent } from './../admin-manage-auto/admin-manage-au
 })
 export class AdminComponent {
   autos: Auto[] = [];
+  searchTerm: string = '';
+  filteredAutos: Auto[] = [];
   editingAuto: Auto | null = null;
   formAuto: Partial<Auto> = {};
   isModalOpen = false;
@@ -26,8 +28,9 @@ export class AdminComponent {
 
   loadAutos() {
     this.autoService.getAll().subscribe(data => {
-      // Ordina per ID crescente
-      this.autos = data.sort((a, b) => (a.id! - b.id!));
+      // Ordina per marca
+      this.autos = data.sort((a, b) => a.marca.localeCompare(b.marca));
+      this.filteredAutos = [...this.autos];
     });
   }
 
@@ -52,20 +55,36 @@ export class AdminComponent {
     this.selectedFile = undefined;
   }
 
+  filterAutos() {
+    if (!this.searchTerm.trim()) {
+      this.filteredAutos = [...this.autos];
+      return;
+    }
+    const term = this.searchTerm.toLowerCase();
+    this.filteredAutos = this.autos.filter(auto =>
+      auto.titolo.toLowerCase().includes(term)
+    );
+  }
+
   // Riceve i dati salvati dalla modale
   handleSave(event: { auto: Partial<Auto>, file?: File }) {
     const { auto, file } = event;
 
-    if (this.editingAuto) {
-      this.autoService.update(this.editingAuto.id!, auto as Auto, file).subscribe(() => {
-        this.loadAutos();
-        this.closeModal();
+    try {
+      const request$ = this.editingAuto
+        ? this.autoService.update(this.editingAuto.id!, auto as Auto, file)
+        : this.autoService.create(auto as Auto, file);
+
+      request$.subscribe({
+        next: () => {
+          this.loadAutos();
+          this.closeModal();
+        },
+        error: err => alert(err.message || 'Errore durante l’operazione.')
       });
-    } else {
-      this.autoService.create(auto as Auto, file).subscribe(() => {
-        this.loadAutos();
-        this.closeModal();
-      });
+
+    } catch (err: any) {
+      alert(err.message || 'Errore sconosciuto.');
     }
   }
 

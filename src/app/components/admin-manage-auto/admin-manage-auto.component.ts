@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Auto } from '../../models/auto.model'; // aggiorna il path se serve
@@ -17,14 +17,30 @@ export class AdminManageAutoComponent {
   @Input() formAuto: Partial<Auto> = {};  // Dati del form
 
   selectedFile: File | undefined;
+  previewUrl: string = '';
 
   @Output() save = new EventEmitter<{ auto: Partial<Auto>, file?: File }>();
   @Output() close = new EventEmitter<void>();
 
   apiUrl = environment.apiURL;
 
+  constructor(private cdr: ChangeDetectorRef) {}
+
   onFileChange(event: any) {
-    this.selectedFile = event.target.files[0] ?? undefined;
+    const file = event.target.files[0];
+     if (file) {
+       this.selectedFile = file;
+       this.previewUrl = URL.createObjectURL(file);
+       // forza rilevamento dei cambiamenti
+       this.cdr.detectChanges();
+     }
+  }
+
+  ngOnChanges() {
+    // quando cambia l'auto in modifica, aggiorna il preview
+    if (this.editingAuto?.immagine && !this.selectedFile) {
+      this.previewUrl = `${this.apiUrl}/images/${this.editingAuto.immagine}`;
+    }
   }
 
   submit() {

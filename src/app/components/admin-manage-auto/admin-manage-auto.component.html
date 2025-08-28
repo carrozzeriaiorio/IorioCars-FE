@@ -15,10 +15,10 @@
           <input type="text" [(ngModel)]="formAuto.modello" name="modello" placeholder="Modello" required>
 
           <label>Anno:</label>
-          <input type="number" [(ngModel)]="formAuto.anno" name="anno" placeholder="Anno" required>
+          <input type="number" [(ngModel)]="formAuto.anno" name="anno" placeholder="Anno" min="1900" required>
 
           <label>Prezzo:</label>
-          <input type="number" [(ngModel)]="formAuto.prezzo" name="prezzo" placeholder="Prezzo" required>
+          <input type="number" [(ngModel)]="formAuto.prezzo" name="prezzo" placeholder="Prezzo" step="100" min="0" required>
 
           <label>Km:</label>
           <input type="number" [(ngModel)]="formAuto.km" name="km" placeholder="Km" required>
@@ -36,8 +36,8 @@
           <textarea [(ngModel)]="formAuto.descrizione" name="descrizione" placeholder="Descrizione"></textarea>
 
           <div *ngIf="editingAuto?.immagine || selectedFile" class="image-preview">
-            <label>Immagine presente nel catalogo:</label>
-            <img [src]="getPreview()" alt="Immagine auto" class="auto-preview">
+            <label>Immagine caricata:</label>
+            <img [src]="previewUrl" alt="Immagine auto" class="auto-preview">
           </div>
         </div>
       </div>
