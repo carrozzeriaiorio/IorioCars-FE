@@ -15,8 +15,7 @@ export class HomeComponent {
   ctaText: string = "Sfoglia le auto";
 
   aboutTitle: string = "Chi siamo";
-  aboutText: string = "Antonio e Andrea sono appassionati di auto e da anni si dedicano con competenza alla vendita di veicoli nuovi e usati. La loro missione è aiutarti a trovare l’auto perfetta, offrendoti un servizio trasparente, professionale e su misura per le tue esigenze.";
-
+  aboutText: string = "Antonio e Andrea lavorano e si dedicano al settore delle auto da anni. Grazie alla loro esperienza, sono in grado di guidarti nella scelta del veicolo più adatto alle tue esigenze, garantendo professionalità, trasparenza e un servizio su misura per ogni cliente.";
 
   services = [
       {
