@@ -72,7 +72,13 @@ export class AdminManageAutoComponent {
     this.cdr.detectChanges();
   }
 
-  submit() {
+  submit(form: any) {
+    if (form.invalid) {
+      // blocca invio e mostra messaggio
+      alert('Compila tutti i campi obbligatori!');
+      return;
+    }
+
     this.save.emit({ auto: this.formAuto, file: this.selectedFile, removeImage: this.removeExistingImage });
   }
 

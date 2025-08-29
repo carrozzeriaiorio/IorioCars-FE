@@ -1,7 +1,7 @@
 <div class="modal" [class.show]="modalOpen">
   <div class="modal-content">
     <h3>{{ editingAuto ? 'Modifica Auto' : 'Aggiungi Auto' }}</h3>
-    <form (ngSubmit)="submit()" class="modal-form">
+    <form #autoForm="ngForm" (ngSubmit)="submit(autoForm)" class="modal-form">
       <div class="modal-columns">
         <!-- Colonna sinistra: campi principali + immagine -->
         <div class="left-column">
