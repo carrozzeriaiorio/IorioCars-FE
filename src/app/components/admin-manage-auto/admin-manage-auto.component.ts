@@ -58,6 +58,11 @@ export class AdminManageAutoComponent {
     if (this.editingAuto?.immagine) {
      return `${this.apiUrl}/images/${this.editingAuto.immagine}`;
     }
-    return '';
+    return 'assets/images/no_car_image.jpg';
+  }
+
+  onImageError(event: Event) {
+    const target = event.target as HTMLImageElement;
+    target.src = 'assets/images/no_car_image.jpg';
   }
 }

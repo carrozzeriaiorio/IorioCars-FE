@@ -37,7 +37,7 @@
 
           <div *ngIf="editingAuto?.immagine || selectedFile" class="image-preview">
             <label>Immagine caricata:</label>
-            <img [src]="previewUrl" alt="Immagine auto" class="auto-preview">
+            <img [src]="previewUrl" (error)="onImageError($event)" alt="Immagine auto" class="auto-preview">
           </div>
         </div>
       </div>
