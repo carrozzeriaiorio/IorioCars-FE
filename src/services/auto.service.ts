@@ -33,11 +33,11 @@ export class AutoService {
   }
 
   getAll(): Observable<Auto[]> {
-    return this.http.get<Auto[]>(this.apiUrl);
+    return this.http.get<Auto[]>(this.apiUrl, { withCredentials: true });
   }
 
   getById(id: number): Observable<Auto> {
-    return this.http.get<Auto>(`${this.apiUrl}/${id}`);
+    return this.http.get<Auto>(`${this.apiUrl}/${id}`, { withCredentials: true });
   }
 
   // Crea una nuova auto
@@ -48,7 +48,7 @@ export class AutoService {
     if (file) {
       formData.append('file', file);
     }
-    return this.http.post<Auto>(this.apiUrl, formData, { headers });
+    return this.http.post<Auto>(this.apiUrl, formData, { headers, withCredentials: true });
   }
 
   // Aggiorna un’auto esistente
@@ -60,13 +60,13 @@ export class AutoService {
       formData.append('file', file);
     }
 
-    return this.http.put<Auto>(`${this.apiUrl}/${id}`, formData, { headers });
+    return this.http.put<Auto>(`${this.apiUrl}/${id}`, formData, { headers, withCredentials: true });
   }
 
   // Elimina un’auto
   delete(id: number): Observable<void> {
     const headers = this.getAuthHeaders();
 
-    return this.http.delete<void>(`${this.apiUrl}/${id}`, { headers });
+    return this.http.delete<void>(`${this.apiUrl}/${id}`, { headers, withCredentials: true });
   }
 }
