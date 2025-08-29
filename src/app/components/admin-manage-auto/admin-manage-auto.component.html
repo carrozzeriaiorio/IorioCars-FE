@@ -27,7 +27,7 @@
           <input type="text" [(ngModel)]="formAuto.carburante" name="carburante" placeholder="Carburante" required>
 
           <label>Immagine:</label>
-          <input type="file" (change)="onFileChange($event)">
+          <input #fileInput type="file" (change)="onFileChange($event)">
         </div>
 
         <!-- Colonna destra: descrizione -->

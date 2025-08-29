@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Auto } from '../../models/auto.model'; // aggiorna il path se serve
@@ -15,6 +15,7 @@ export class AdminManageAutoComponent {
   @Input() modalOpen = false;             // Controlla visibilità della modale
   @Input() editingAuto: Auto | null = null;
   @Input() formAuto: Partial<Auto> = {};  // Dati del form
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
   selectedFile: File | undefined;
   removeExistingImage = false;
@@ -45,8 +46,9 @@ export class AdminManageAutoComponent {
   ngOnChanges() {
     if (this.modalOpen) {
       if (this.selectedFile) {
-        // c’è già un file selezionato, mantieni il preview
-        return;
+        // resettare input file se necessario
+        this.fileInput.nativeElement.value = '';
+        this.selectedFile = undefined;
       }
 
       if (this.editingAuto?.immagine) {
