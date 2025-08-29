@@ -31,7 +31,11 @@ export class AdminManageAutoComponent {
     const file = event.target.files[0];
      if (file) {
        this.selectedFile = file;
-       this.removeExistingImage = false;
+       if (this.editingAuto?.immagine) {
+         this.removeExistingImage = true;
+       } else {
+         this.removeExistingImage = false;
+       }
        this.previewUrl = URL.createObjectURL(file);
        // forza rilevamento dei cambiamenti
        this.cdr.detectChanges();
