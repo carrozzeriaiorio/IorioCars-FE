@@ -33,11 +33,11 @@ export class AutoService {
   }
 
   getAll(): Observable<Auto[]> {
-    return this.http.get<Auto[]>(this.apiUrl, { withCredentials: true });
+    return this.http.get<Auto[]>(this.apiUrl);
   }
 
   getById(id: number): Observable<Auto> {
-    return this.http.get<Auto>(`${this.apiUrl}/${id}`, { withCredentials: true });
+    return this.http.get<Auto>(`${this.apiUrl}/${id}`);
   }
 
   // Crea una nuova auto
