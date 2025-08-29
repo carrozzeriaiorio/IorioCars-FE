@@ -43,11 +43,22 @@ export class AdminManageAutoComponent {
   }
 
   ngOnChanges() {
-    // Aggiorna preview all'apertura della modale
-    if (this.editingAuto?.immagine && !this.selectedFile) {
-      this.previewUrl = `${this.apiUrl}/images/${this.editingAuto.immagine}`;
-    } else if (!this.editingAuto?.immagine) {
-      this.previewUrl = 'assets/images/no_car_image.jpg';
+    if (this.modalOpen) {
+      if (this.selectedFile) {
+        // c’è già un file selezionato, mantieni il preview
+        return;
+      }
+
+      if (this.editingAuto?.immagine) {
+        this.previewUrl = `${this.apiUrl}/images/${this.editingAuto.immagine}`;
+        this.removeExistingImage = false; // resettare flag
+      } else {
+        this.previewUrl = 'assets/images/no_car_image.jpg';
+        this.removeExistingImage = false;
+      }
+
+      // forza il rilevamento
+      this.cdr.detectChanges();
     }
   }
 
