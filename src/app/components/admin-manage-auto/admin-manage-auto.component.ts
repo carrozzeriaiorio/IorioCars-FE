@@ -17,9 +17,10 @@ export class AdminManageAutoComponent {
   @Input() formAuto: Partial<Auto> = {};  // Dati del form
 
   selectedFile: File | undefined;
+  removeExistingImage = false;
   previewUrl: string = '';
 
-  @Output() save = new EventEmitter<{ auto: Partial<Auto>, file?: File }>();
+  @Output() save = new EventEmitter<{ auto: Partial<Auto>, file?: File, removeImage?: boolean }>();
   @Output() close = new EventEmitter<void>();
 
   apiUrl = environment.apiURL;
@@ -30,6 +31,7 @@ export class AdminManageAutoComponent {
     const file = event.target.files[0];
      if (file) {
        this.selectedFile = file;
+       this.removeExistingImage = false;
        this.previewUrl = URL.createObjectURL(file);
        // forza rilevamento dei cambiamenti
        this.cdr.detectChanges();
@@ -47,16 +49,14 @@ export class AdminManageAutoComponent {
 
   // Rimuove immagine già presente
   removeImage() {
-    if (this.editingAuto) {
-      this.editingAuto.immagine = ''; // reset del campo
-      this.previewUrl = 'assets/images/no_car_image.jpg';
-      this.selectedFile = undefined;
-      this.cdr.detectChanges();
-    }
+    this.selectedFile = undefined;
+    this.removeExistingImage = true;
+    this.previewUrl = 'assets/images/no_car_image.jpg';
+    this.cdr.detectChanges();
   }
 
   submit() {
-    this.save.emit({ auto: this.formAuto, file: this.selectedFile });
+    this.save.emit({ auto: this.formAuto, file: this.selectedFile, removeImage: this.removeExistingImage });
   }
 
   cancel() {
@@ -64,12 +64,8 @@ export class AdminManageAutoComponent {
   }
 
   getPreview(): string {
-    if (this.selectedFile) {
-     return window.URL.createObjectURL(this.selectedFile);
-    }
-    if (this.editingAuto?.immagine) {
-     return `${this.apiUrl}/images/${this.editingAuto.immagine}`;
-    }
+    if (this.selectedFile) return URL.createObjectURL(this.selectedFile);
+    if (this.editingAuto?.immagine && !this.removeExistingImage) return `${this.apiUrl}/images/${this.editingAuto.immagine}`;
     return 'assets/images/no_car_image.jpg';
   }
 
