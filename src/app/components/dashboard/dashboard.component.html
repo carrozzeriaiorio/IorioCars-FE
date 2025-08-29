@@ -76,7 +76,7 @@
   <main class="auto-carousel">
     <div class="carousel">
       <div class="auto-card" *ngFor="let auto of filteredAutos">
-        <img [src]="getImageUrl(auto.immagine)" alt="Foto non disponibile">
+        <img [src]="getImageUrl(auto.immagine)" (error)="onImageError($event)" alt="Foto non disponibile">
 
         <div class="auto-info">
           <h4>{{ auto.titolo }}</h4>

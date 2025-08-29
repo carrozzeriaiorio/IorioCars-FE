@@ -80,4 +80,9 @@ export class DashboardComponent {
     return `${environment.apiURL}/images/${filename}`;
   }
 
+  onImageError(event: Event) {
+    const target = event.target as HTMLImageElement;
+    target.src = 'assets/images/no_car_image.jpg'; // fallback se l'immagine non viene trovata
+  }
+
 }
