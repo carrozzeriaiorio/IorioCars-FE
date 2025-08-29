@@ -74,8 +74,18 @@ export class AdminManageAutoComponent {
 
   submit(form: any) {
     if (form.invalid) {
-      // blocca invio e mostra messaggio
-      alert('Compila tutti i campi obbligatori!');
+      const errors: string[] = [];
+
+      if (form.controls['titolo']?.invalid) errors.push('Titolo mancante');
+      if (form.controls['marca']?.invalid) errors.push('Marca mancante');
+      if (form.controls['modello']?.invalid) errors.push('Modello mancante');
+      if (form.controls['anno']?.invalid) errors.push('Anno mancante o non valido');
+      if (form.controls['prezzo']?.invalid) errors.push('Prezzo mancante o non valido');
+      if (form.controls['km']?.invalid) errors.push('Km mancante');
+      if (form.controls['carburante']?.invalid) errors.push('Carburante mancante');
+      if (!this.selectedFile) errors.push('Immagine mancante');
+
+      alert('Campi obbligatori mancanti:\n' + errors.join('\n'));
       return;
     }
 
