@@ -138,6 +138,21 @@
   background-color: #ff1c1c;
 }
 
+.remove-image-btn {
+  margin-top: 5px;
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.remove-image-btn:hover {
+  background-color: #d9363e;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .modal {

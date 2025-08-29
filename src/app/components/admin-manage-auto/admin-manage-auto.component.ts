@@ -37,9 +37,21 @@ export class AdminManageAutoComponent {
   }
 
   ngOnChanges() {
-    // quando cambia l'auto in modifica, aggiorna il preview
+    // Aggiorna preview all'apertura della modale
     if (this.editingAuto?.immagine && !this.selectedFile) {
       this.previewUrl = `${this.apiUrl}/images/${this.editingAuto.immagine}`;
+    } else if (!this.editingAuto?.immagine) {
+      this.previewUrl = 'assets/images/no_car_image.jpg';
+    }
+  }
+
+  // Rimuove immagine già presente
+  removeImage() {
+    if (this.editingAuto) {
+      this.editingAuto.immagine = ''; // reset del campo
+      this.previewUrl = 'assets/images/no_car_image.jpg';
+      this.selectedFile = undefined;
+      this.cdr.detectChanges();
     }
   }
 

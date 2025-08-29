@@ -38,6 +38,7 @@
           <div *ngIf="editingAuto?.immagine || selectedFile" class="image-preview">
             <label>Immagine caricata:</label>
             <img [src]="previewUrl" (error)="onImageError($event)" alt="Immagine auto" class="auto-preview">
+            <button type="button" class="remove-image-btn" *ngIf="editingAuto?.immagine" (click)="removeImage()">Rimuovi immagine</button>
           </div>
         </div>
       </div>
