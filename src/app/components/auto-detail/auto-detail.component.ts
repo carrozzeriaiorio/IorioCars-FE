@@ -23,8 +23,14 @@ export class AutoDetailComponent implements OnInit {
   }
 
   getImageUrl(filename?: string): string {
-    if (!filename) return ''; // fallback se manca
-    return `${environment.apiURL}/images/${filename}`;
+    return filename
+      ? `${environment.apiURL}/images/${filename}`
+      : 'assets/images/no_car_image.jpg';
+  }
+
+  onImageError(event: Event) {
+    const target = event.target as HTMLImageElement;
+    target.src = 'assets/images/no_car_image.jpg';
   }
 }
 

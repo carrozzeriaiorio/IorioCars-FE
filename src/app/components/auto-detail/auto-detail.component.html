@@ -6,7 +6,7 @@
       <!-- Immagine a sinistra -->
       <div class="image-section">
         <ng-container *ngIf="auto.immagine; else placeholder">
-          <img [src]="getImageUrl(auto.immagine)" alt="{{ auto.titolo }}">
+          <img [src]="getImageUrl(auto.immagine)" (error)="onImageError($event)" alt="{{ auto.titolo }}">
         </ng-container>
         <ng-template #placeholder>
           <div class="image-placeholder"></div>
