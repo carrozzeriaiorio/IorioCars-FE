@@ -18,7 +18,6 @@ export class AdminManageAutoComponent {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
   selectedFile: File | undefined;
-  removeExistingImage = false;
   previewUrl: string = '';
 
   @Output() save = new EventEmitter<{ auto: Partial<Auto>, file?: File, removeImage?: boolean }>();
@@ -32,11 +31,6 @@ export class AdminManageAutoComponent {
     const file = event.target.files[0];
      if (file) {
        this.selectedFile = file;
-       if (this.editingAuto?.immagine) {
-         this.removeExistingImage = true;
-       } else {
-         this.removeExistingImage = false;
-       }
        this.previewUrl = URL.createObjectURL(file);
        // forza rilevamento dei cambiamenti
        this.cdr.detectChanges();
@@ -53,10 +47,8 @@ export class AdminManageAutoComponent {
 
       if (this.editingAuto?.immagine) {
         this.previewUrl = `${this.apiUrl}/images/${this.editingAuto.immagine}`;
-        this.removeExistingImage = false; // resettare flag
       } else {
         this.previewUrl = 'assets/images/no_car_image.jpg';
-        this.removeExistingImage = false;
       }
 
       // forza il rilevamento
@@ -67,7 +59,6 @@ export class AdminManageAutoComponent {
   // Rimuove immagine già presente
   removeImage() {
     this.selectedFile = undefined;
-    this.removeExistingImage = true;
     this.previewUrl = 'assets/images/no_car_image.jpg';
     this.cdr.detectChanges();
   }
@@ -89,7 +80,7 @@ export class AdminManageAutoComponent {
       return;
     }
 
-    this.save.emit({ auto: this.formAuto, file: this.selectedFile, removeImage: this.removeExistingImage });
+    this.save.emit({ auto: this.formAuto, file: this.selectedFile});
   }
 
   cancel() {
@@ -98,7 +89,7 @@ export class AdminManageAutoComponent {
 
   getPreview(): string {
     if (this.selectedFile) return URL.createObjectURL(this.selectedFile);
-    if (this.editingAuto?.immagine && !this.removeExistingImage) return `${this.apiUrl}/images/${this.editingAuto.immagine}`;
+    if (this.editingAuto?.immagine) return `${this.apiUrl}/images/${this.editingAuto.immagine}`;
     return 'assets/images/no_car_image.jpg';
   }
 

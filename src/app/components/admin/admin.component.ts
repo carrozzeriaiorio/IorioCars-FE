@@ -21,7 +21,6 @@ export class AdminComponent {
   formAuto: Partial<Auto> = {};
   isModalOpen = false;
   selectedFile?: File;
-  removeExistingImage: boolean = false;
 
   constructor(private autoService: AutoService) {
     this.loadAutos();
@@ -44,7 +43,6 @@ export class AdminComponent {
       this.editingAuto = null;
       this.formAuto = {};
     }
-    this.removeExistingImage = false;
     this.selectedFile = undefined; // reset del file
     this.isModalOpen = true;
   }
@@ -55,7 +53,6 @@ export class AdminComponent {
     this.editingAuto = null;
     this.formAuto = {};
     this.selectedFile = undefined;
-    this.removeExistingImage = false;
   }
 
   filterAutos() {
@@ -73,12 +70,9 @@ export class AdminComponent {
   handleSave(event: { auto: Partial<Auto>, file?: File, removeImage?: boolean }) {
     const { auto, file, removeImage } = event;
 
-    // Aggiorna il flag locale per il backend
-    this.removeExistingImage = removeImage ?? false;
-
     try {
       const request$ = this.editingAuto
-        ? this.autoService.update(this.editingAuto.id!, auto as Auto, file, this.removeExistingImage)
+        ? this.autoService.update(this.editingAuto.id!, auto as Auto, file)
         : this.autoService.create(auto as Auto, file);
 
       request$.subscribe({

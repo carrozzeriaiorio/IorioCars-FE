@@ -52,15 +52,13 @@ export class AutoService {
   }
 
   // Aggiorna un’auto esistente
-  update(id: number, auto: Auto, file?: File, removeImage: boolean = false): Observable<Auto> {
+  update(id: number, auto: Auto, file?: File): Observable<Auto> {
     const headers = this.getAuthHeaders();
     const formData = new FormData();
     formData.append('auto', new Blob([JSON.stringify(auto)], { type: 'application/json' }));
     if (file) {
       formData.append('file', file);
     }
-
-    formData.append('removeImage', removeImage ? 'true' : 'false'); // <-- importante
 
     return this.http.put<Auto>(`${this.apiUrl}/${id}`, formData, { headers });
   }
