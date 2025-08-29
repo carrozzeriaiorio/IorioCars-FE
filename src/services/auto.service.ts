@@ -60,9 +60,9 @@ export class AutoService {
       formData.append('file', file);
     }
 
-    const params = new HttpParams().set('removeImage', String(removeImage));
+    formData.append('removeImage', removeImage ? 'true' : 'false'); // <-- importante
 
-    return this.http.put<Auto>(`${this.apiUrl}/${id}`, formData, { headers, params });
+    return this.http.put<Auto>(`${this.apiUrl}/${id}`, formData, { headers });
   }
 
   // Elimina un’auto
