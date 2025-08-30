@@ -6,9 +6,13 @@ import { LoaderService } from '../../../services/loader.service';
   selector: 'app-loader',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './loader.component.html', // punta al template separato
-  styleUrls: ['./loader.component.css']
+  templateUrl: './loader.component.html',  // file HTML separato
+  styleUrls: ['./loader.component.css']   // file CSS separato
 })
 export class LoaderComponent {
-  constructor(public loaderService: LoaderService) {}
+  loading$;
+
+  constructor(private loaderService: LoaderService) {
+    this.loading$ = this.loaderService.loading$;
+  }
 }
