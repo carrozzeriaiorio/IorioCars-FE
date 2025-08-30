@@ -17,31 +17,19 @@ export class HomeComponent {
   aboutTitle: string = "Chi siamo";
   aboutText: string = "Antonio e Andrea lavorano e si dedicano al settore delle auto da anni. Grazie alla loro esperienza, sono in grado di guidarti nella scelta del veicolo più adatto alle tue esigenze, garantendo professionalità, trasparenza e un servizio su misura per ogni cliente.";
 
-  services = [
-      {
-        title: "Finanziamenti",
-        description: "Offriamo soluzioni di finanziamento personalizzate: rate flessibili, tassi competitivi e possibilità di scegliere tra più piani di pagamento per adattarsi al tuo budget e alle tue esigenze."
-      },
-      {
-        title: "Assistenza",
-        description: "Servizio post-vendita completo: manutenzione programmata, riparazioni rapide e supporto tecnico dedicato per garantirti sempre la massima sicurezza e affidabilità della tua auto."
-      },
-      {
-        title: "Permute",
-        description: "Valutiamo la tua auto usata in modo trasparente e competitivo, permettendoti di utilizzarla come parte del pagamento per l’acquisto del tuo nuovo veicolo, senza complicazioni."
-      },
-      {
-        title: "Garanzia estesa",
-        description: "Opzione di garanzia estesa che copre guasti e malfunzionamenti, offrendoti tranquillità e protezione aggiuntiva anche dopo l’acquisto della tua auto."
-      },
-      {
-        title: "Consulenza assicurativa",
-        description: "Il nostro team ti aiuta a scegliere la polizza assicurativa più adatta, con preventivi personalizzati e soluzioni complete per tutelare te e la tua auto."
-      },
-      {
-        title: "Test drive personalizzato",
-        description: "Prenota un test drive su misura, prova la tua auto ideale in tutte le condizioni e scopri tutte le funzionalità prima di prendere la decisione finale."
-      }
-    ];
+  const services = [
+    {
+      title: "Permute",
+      description: "Valutiamo la tua auto usata in modo trasparente e competitivo, permettendoti di utilizzarla come parte del pagamento per l’acquisto del tuo nuovo veicolo, senza complicazioni."
+    },
+    {
+      title: "Test drive personalizzato",
+      description: "Prenota un test drive su misura, prova la tua auto ideale in tutte le condizioni e scopri tutte le funzionalità prima di prendere la decisione finale."
+    },
+    {
+      title: "Accessori, personalizzazioni e carrozzeria",
+      description: "Personalizza la tua auto con accessori originali, pacchetti estetici e funzionali, e approfitta dei servizi di carrozzeria per mantenerla sempre perfetta e unica nel tuo stile."
+    }
+  ];
 }
 
