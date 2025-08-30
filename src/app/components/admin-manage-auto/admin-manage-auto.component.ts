@@ -19,7 +19,6 @@ export class AdminManageAutoComponent {
 
   selectedFile: File | undefined;
   previewUrl: string = '';
-  loading = false;
 
   @Output() save = new EventEmitter<{ auto: Partial<Auto>, file?: File, removeImage?: boolean }>();
   @Output() close = new EventEmitter<void>();
@@ -81,7 +80,6 @@ export class AdminManageAutoComponent {
       return;
     }
 
-    this.loading = true;
     this.save.emit({ auto: this.formAuto, file: this.selectedFile});
   }
 
