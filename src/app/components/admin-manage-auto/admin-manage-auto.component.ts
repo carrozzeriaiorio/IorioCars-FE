@@ -81,7 +81,7 @@ export class AdminManageAutoComponent {
       return;
     }
 
-    this.loading = false;
+    this.loading = true;
     this.save.emit({ auto: this.formAuto, file: this.selectedFile});
   }
 
