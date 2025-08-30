@@ -17,7 +17,7 @@ export class HomeComponent {
   aboutTitle: string = "Chi siamo";
   aboutText: string = "Antonio e Andrea lavorano e si dedicano al settore delle auto da anni. Grazie alla loro esperienza, sono in grado di guidarti nella scelta del veicolo più adatto alle tue esigenze, garantendo professionalità, trasparenza e un servizio su misura per ogni cliente.";
 
-  const services = [
+  services = [
     {
       title: "Permute",
       description: "Valutiamo la tua auto usata in modo trasparente e competitivo, permettendoti di utilizzarla come parte del pagamento per l’acquisto del tuo nuovo veicolo, senza complicazioni."
