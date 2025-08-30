@@ -28,7 +28,7 @@ export class HomeComponent {
     },
     {
       title: "Accessori, personalizzazioni e carrozzeria",
-      description: "Personalizza la tua auto con accessori originali, pacchetti estetici e funzionali, e approfitta dei servizi di carrozzeria per mantenerla sempre perfetta e unica nel tuo stile."
+      description: "Personalizza la tua auto con accessori originali, pacchetti estetici e funzionali, approfitta dei servizi di carrozzeria per mantenerla sempre perfetta e unica nel tuo stile."
     }
   ];
 }
