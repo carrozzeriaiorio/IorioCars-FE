@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AutoService } from '../../../services/auto.service';
@@ -23,7 +23,7 @@ export class AdminComponent {
   selectedFile?: File;
   loading = false;
 
-  constructor(private autoService: AutoService) {
+  constructor(private autoService: AutoService, private cdr: ChangeDetectorRef) {
     this.loadAutos();
   }
 
@@ -70,6 +70,7 @@ export class AdminComponent {
   // Riceve i dati salvati dalla modale
   handleSave(event: { auto: Partial<Auto>, file?: File, removeImage?: boolean }) {
     this.loading = true;
+    this.cdr.detectChanges();
     const { auto, file, removeImage } = event;
 
     try {
@@ -82,10 +83,12 @@ export class AdminComponent {
           this.loadAutos();
           this.closeModal();
           this.loading = false;
+          this.cdr.detectChanges();
         },
         error: err => {
           alert(err.message || 'Errore durante l’operazione.');
           this.loading = false; // rimuove overlay
+          this.cdr.detectChanges();
         }
       });
 
