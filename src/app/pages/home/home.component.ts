@@ -23,12 +23,12 @@ export class HomeComponent {
       description: "Valutiamo la tua auto usata in modo trasparente e competitivo, permettendoti di utilizzarla come parte del pagamento per l’acquisto del tuo nuovo veicolo, senza complicazioni."
     },
     {
-      title: "Test drive personalizzato",
-      description: "Prenota un test drive su misura, prova la tua auto ideale in tutte le condizioni e scopri tutte le funzionalità prima di prendere la decisione finale."
-    },
-    {
       title: "Accessori, personalizzazioni e carrozzeria",
       description: "Personalizza la tua auto con accessori originali, pacchetti estetici e funzionali, approfitta dei servizi di carrozzeria per mantenerla sempre perfetta e unica nel tuo stile."
+    },
+    {
+      title: "Test drive personalizzato",
+      description: "Prenota un test drive su misura, prova la tua auto ideale in tutte le condizioni e scopri tutte le funzionalità prima di prendere la decisione finale."
     }
   ];
 }
