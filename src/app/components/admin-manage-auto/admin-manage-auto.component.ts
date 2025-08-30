@@ -12,6 +12,7 @@ import { environment } from '../../../environments/environments';
   styleUrls: ['./admin-manage-auto.component.css']
 })
 export class AdminManageAutoComponent {
+  @Input() loading = false;               // Controllo modale durante operazioni CRUD
   @Input() modalOpen = false;             // Controlla visibilità della modale
   @Input() editingAuto: Auto | null = null;
   @Input() formAuto: Partial<Auto> = {};  // Dati del form
@@ -79,6 +80,9 @@ export class AdminManageAutoComponent {
       alert('Campi obbligatori mancanti:\n' + errors.join('\n'));
       return;
     }
+
+    // Blocca subito UI
+    this.loading = true;
 
     this.save.emit({ auto: this.formAuto, file: this.selectedFile});
   }

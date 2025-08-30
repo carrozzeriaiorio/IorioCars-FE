@@ -51,4 +51,8 @@
     (close)="isModalOpen = false">
   </app-admin-manage-auto>
 
+  <div *ngIf="loading" class="overlay-global">
+    <div class="spinner"></div>
+  </div>
+
 </div>

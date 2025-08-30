@@ -21,6 +21,7 @@ export class AdminComponent {
   formAuto: Partial<Auto> = {};
   isModalOpen = false;
   selectedFile?: File;
+  loading = false;
 
   constructor(private autoService: AutoService) {
     this.loadAutos();
@@ -68,6 +69,7 @@ export class AdminComponent {
 
   // Riceve i dati salvati dalla modale
   handleSave(event: { auto: Partial<Auto>, file?: File, removeImage?: boolean }) {
+    this.loading = true;
     const { auto, file, removeImage } = event;
 
     try {
@@ -79,8 +81,12 @@ export class AdminComponent {
         next: () => {
           this.loadAutos();
           this.closeModal();
+          this.loading = false;
         },
-        error: err => alert(err.message || 'Errore durante l’operazione.')
+        error: err => {
+          alert(err.message || 'Errore durante l’operazione.');
+          this.loading = false; // rimuove overlay
+        }
       });
 
     } catch (err: any) {
